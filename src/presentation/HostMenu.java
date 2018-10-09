@@ -3,35 +3,48 @@ package presentation;
 import domain.Code;
 import service.Shop;
 
-public class HostMenu implements Menu{
+public class HostMenu implements Menu {
 	private static HostMenu hostmenu = new HostMenu();
 
-	public static HostMenu getInstance() { return hostmenu;}
+	public static HostMenu getInstance() {
+		return hostmenu;
+	}
 
+	@Override
 	public void printMenu() {
-		System.out.println("----------------관리자 메뉴-------------");
+		System.out.println("----------------관리자 메뉴---------------");
 		System.out.println("\t1.재고관리\t2.주문관리\t3.로그아웃");
 		System.out.println("-------------------------------------");
-		System.out.print("\t메뉴 번호를 입력하세요. : ");
+		System.out.print(Menu.INPUT_STR);
 	}
 
 	@Override
 	public void execute() throws Exception {
 		// TODO Auto-generated method stub
 		String option = null;
-		
+
+		int code = Code.ERROR;
+
 		printMenu();
-		
-		option  = Console.input();
-		
-		switch(option) {
+
+		option = Console.input();
+
+		switch (option) {
 		case "1":
+			code = Code.HOST_STOCK_MENU;
+			break;
 		case "2":
+
+			break;
 		case "3":
-			default:
-				
+
+			break;
+		default:
+
+			break;
+
 		}
-		
-		Shop.setOption(Code.ERROR);
+
+		Shop.setCode(code);
 	}
 }

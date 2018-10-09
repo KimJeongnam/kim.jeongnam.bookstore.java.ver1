@@ -4,35 +4,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 import domain.Code;
-import presentation.HostLoginMenu;
 import presentation.HostMenu;
-import presentation.ShopMenu;
+import presentation.HostStockMenu;
 import presentation.Menu;
+import presentation.ShopMenu;
 
 public class Shop {
-	private static int option;
+	private static int code;
 	
-	public static void setOption(int option) {
-		Shop.option = option;
+	public static void setCode(int code) {
+		Shop.code = code;
 	}
 	
 	public Shop(boolean debug) {
 		Map<Integer, Menu> map = new HashMap<Integer, Menu>();
 		map.put(Code.SHOP_LOGIN, new ShopMenu());
-		map.put(Code.HOST_LOGIN, new HostLoginMenu());
 		map.put(Code.HOST_MENU, HostMenu.getInstance());
+		map.put(Code.HOST_STOCK_MENU, new HostStockMenu(Code.HOST_STOCK_MENU));
 		
 		
-		for(option = Code.SHOP_LOGIN; map.containsKey(option);) {
+		for(code = Code.SHOP_LOGIN; map.containsKey(code);) {
 			try {
-			map.get(option).execute();
+			map.get(code).execute();
 			}catch(Exception e) {
 				if(debug)
 					e.printStackTrace();
 				System.err.println(e.getMessage());
-				option = Code.SHOP_LOGIN;
+				code = Code.SHOP_LOGIN;
 			}
-			System.out.println(option);
+			if(debug)
+			    System.out.println(code);
 		}
 		
 		System.out.println("프로그램 종료");

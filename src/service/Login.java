@@ -25,7 +25,6 @@ public class Login {
 			Pw = null;
 		}
 		
-		System.out.println("------------"+str+" 로그인 -------------");
 		System.out.print(str+" ID : ");
 		String id = Console.input();
 		
@@ -40,6 +39,7 @@ public class Login {
 	
 		System.out.println("===============================");
 		System.out.println("\t로그인 되었습니다.");
+		System.out.println("===============================");
 
 	}
 }

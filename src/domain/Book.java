@@ -1,7 +1,7 @@
 package domain;
 
 public class Book {
-	private int code;
+	private String code;
 	private String bookName;
 	private String author;
 	private int price;
@@ -12,11 +12,11 @@ public class Book {
 		return "Code : " + code + "\t제목 : " + bookName + "\t저자 : " + author + "\t 가격 : " + price + "\t수량 : " + stock;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 

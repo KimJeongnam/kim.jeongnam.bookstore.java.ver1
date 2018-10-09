@@ -6,7 +6,7 @@ public interface Host {
 	public static final String ID = "host";
 	public static final String PW = "1234";
 	
-	public void bookList(); 	// 책 목록
+	public void bookList() throws Exception ;	// 책 목록
 	public void bookAdd(Book book); 		// 책 추가
 	public void bookUpdate();	// 책 수정
 	public void bookDelete(Book book); 	// 책삭제
