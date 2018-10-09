@@ -4,13 +4,10 @@ import domain.Code;
 import presentation.Console;
 
 public class Login {
-	String id;
-	String pw;
 	int code;
 	
-	public Login(String id, String pw, int code) {
-		this.id = id;
-		this.pw = pw;
+	public Login(int code) {
+
 		this.code = code;
 	}
 	
@@ -20,12 +17,15 @@ public class Login {
 		String str="";
 		if(code == Code.HOST_LOGIN) {
 			str = "관리자";
-			Id = Host.ID;
-			Pw = Host.PW;
+			Id = Host.ID;			// Interface host ID
+			Pw = Host.PW;		// Interface host PW
 		}else if(code == Code.GUEST_LOGIN){
 			str = "고객";
+			Id = null;
+			Pw = null;
 		}
 		
+		System.out.println("------------"+str+" 로그인 -------------");
 		System.out.print(str+" ID : ");
 		String id = Console.input();
 		
