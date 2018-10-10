@@ -1,0 +1,37 @@
+package domain;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Wish {
+	private static Map<String, Wish> userWish = new HashMap<String, Wish>();
+	private Map<Integer, Integer> wishList = new HashMap<Integer, Integer>();
+	
+	public Map<Integer, Integer> getWishList(){ return wishList; }
+	
+	public static Map<String, Wish> getUserWish(){ return userWish; }
+	
+	// 장바구니 리스트 출력
+	public void getInfo() {
+		for(int key : wishList.keySet()) {
+			Book book = Shelf.getShelf().get(key);
+			System.out.printf("%d %8s %8s %8s %8s\n", 
+					key,
+					book.getBookName(),
+					book.getAuthor(),
+					Integer.toString(book.getPrice()), 
+					Integer.toString(wishList.get(key)));
+		}
+		System.out.println("총 금액 : "+getTotal());
+	}
+	
+	// 장바구니의 총 금액 추출
+	public int getTotal() {
+		int total = 0;
+		for(int key : wishList.keySet()) {
+			total += Shelf.getShelf().get(key).getPrice()* wishList.get(key);
+		}
+		return total;
+	}
+	
+}

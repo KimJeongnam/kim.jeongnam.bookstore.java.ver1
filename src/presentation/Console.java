@@ -3,13 +3,17 @@ package presentation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 public class Console {
 	private static BufferedReader reader;
 	
 	public static String input() {
-		reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("");
+		try {
+		reader = new BufferedReader(new InputStreamReader(System.in,"MS949"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		String str = "";
 		
 		try {

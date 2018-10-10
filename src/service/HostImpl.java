@@ -19,6 +19,10 @@ public class HostImpl implements Host{
     @Override
     public void bookList() throws Exception {
         // TODO Auto-generated method stub
+    	System.out.println(Menu.RESULT_HEADER + "도서 목록" + Menu.RESULT_HEADER);
+		System.out.printf("%s %15s %8s %8s %8s", "번호", "도서명", "저자", "가격", "수량\n");
+		System.out.println(Menu.RESULT_FOOTER);
+		
     	Map<Integer, Book> shelf = Shelf.getShelf();
         
         
@@ -28,7 +32,7 @@ public class HostImpl implements Host{
         
         for(Integer code: shelf.keySet()){
         	Book book = shelf.get(code);
-            System.out.printf("%5d %5s %5s %5s %5s\n", 
+            System.out.printf("%d %8s %8s %8s %8s\n", 
             		code, 
             		book.getBookName(), 
             		book.getAuthor(),
@@ -191,10 +195,13 @@ public class HostImpl implements Host{
 		while(id.isEmpty()) {
 			id = Console.input();
 		}
+		
 		if(users.containsKey(id)) {
 			System.err.println("이미 등록되어있는 id 입니다.");
 			return;
 		}
+		
+		System.out.print("PW : ");
 		String pw = Console.input();
 		while(pw.isEmpty()) {
 			pw = Console.input();

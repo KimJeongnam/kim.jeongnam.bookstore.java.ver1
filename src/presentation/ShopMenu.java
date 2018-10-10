@@ -24,17 +24,20 @@ public class ShopMenu implements Menu {
     @Override
     public void execute() throws Exception {
         // TODO Auto-generated method stub
+    	Login login = null;
         printMenu();
         String option = "";
         int code = Code.SHOP_LOGIN;
         option = Console.input();
-
+        
         switch (option) {
         case "1":
-        	code = Code.GUEST_MENU;
+        	login = new Login(Code.GUEST_LOGIN);
+            login.tryLogin();
+            new GuestMenu().execute();
             break;
         case "2":
-            Login login = new Login(Code.HOST_LOGIN);
+            login = new Login(Code.HOST_LOGIN);
             login.tryLogin();
             code = Code.HOST_MENU;
             break;

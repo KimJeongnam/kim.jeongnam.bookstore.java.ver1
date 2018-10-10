@@ -4,19 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import domain.Code;
+import domain.Session;
 import presentation.Console;
 
 public class Login {
-	int code;
-
+	private static Session session= null;
+	private int code;
+	
 	public Login(int code) {
 
 		this.code = code;
 	}
+	
+	public static Session getSession() { return session; }
 
 	public void tryLogin() throws Exception {
-		String Id = "";
-		String Pw = "";
 		String str = "";
 		Map<String, String> user = null;
 		if (code == Code.HOST_LOGIN) {
@@ -42,6 +44,8 @@ public class Login {
 		if (!user.get(id).equals(pw))
 			throw new Exception("Password가 다릅니다");
 
+		session = new Session();
+		session.getSession().put("id", id);
 		System.out.println("===============================");
 		System.out.println("\t로그인 되었습니다.");
 		System.out.println("===============================");

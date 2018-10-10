@@ -5,6 +5,7 @@ import java.util.Map;
 
 import domain.Book;
 import domain.Code;
+import presentation.GuestMenu;
 import presentation.HostMenu;
 import presentation.HostStockMenu;
 import presentation.Menu;
@@ -20,8 +21,9 @@ public class Shop {
 	public Shop(boolean debug) {
 		Map<Integer, Menu> map = new HashMap<Integer, Menu>();
 		map.put(Code.SHOP_LOGIN, new ShopMenu());
-		map.put(Code.HOST_MENU, HostMenu.getInstance());
-		map.put(Code.HOST_STOCK_MENU, new HostStockMenu(Code.HOST_STOCK_MENU));
+		map.put(Code.HOST_MENU, new HostMenu());
+		map.put(Code.HOST_STOCK_MENU, new HostStockMenu());
+		map.put(Code.GUEST_MENU, new GuestMenu());
 		
 		//test Book
 		Book book1 = new Book();

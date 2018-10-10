@@ -5,17 +5,12 @@ import service.HostImpl;
 import service.Shop;
 
 public class HostStockMenu implements Menu {
-	private int thisCode;
-
-	public HostStockMenu(int thisCode) {
-		this.thisCode = thisCode;
-	}
 
 	@Override
 	public void printMenu() {
 		// TODO Auto-generated method stub
 		System.out.println(Menu.HEADER_BAR + "제고 관리" + Menu.HEADER_BAR);
-		System.out.println("\t1.목록\t2.추가\t3.수정\t4.삭제\t5.이전");
+		System.out.printf("%8s %8s %8s %8s %8s\n", "1.목록", "2.추가", "3.수정", "4.삭제", "5.이전");
 		System.out.println(Menu.FOOTER_BAR);
 		System.out.print(Menu.INPUT_STR);
 	}
@@ -26,11 +21,10 @@ public class HostStockMenu implements Menu {
 		printMenu();
 
 		String option = Console.input();
-		int code = thisCode;
+		int code = Code.HOST_STOCK_MENU;
 
 		switch (option) {
 		case "1":
-			printBookListMenu();
 			HostImpl.getInstance().bookList();
 			break;
 		case "2":
@@ -53,12 +47,6 @@ public class HostStockMenu implements Menu {
 		}
 
 		Shop.setCode(code);
-	}
-
-	public void printBookListMenu() {
-		System.out.println(Menu.RESULT_HEADER + "도서 목록" + Menu.RESULT_HEADER);
-		System.out.printf("%5s %5s %5s %5s %5s", "번호", "도서명", "저자", "가격", "수량\n");
-		System.out.println(Menu.RESULT_FOOTER);
 	}
 
 	public void AddBookHeader() {
