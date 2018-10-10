@@ -1,9 +1,11 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import domain.Code;
+import domain.Order;
 import domain.Shelf;
 import domain.Wish;
 import presentation.Console;
@@ -13,6 +15,7 @@ import presentation.Menu;
 public class GuestImpl implements Guest {
 	private static GuestImpl guestImpl = new GuestImpl();
 	private Map<String, String> users = new HashMap<String, String>();
+	private Map<String, ArrayList<Order>> orderMap = new HashMap<String, ArrayList<Order>>();
 
 	private GuestImpl() {
 	}
@@ -23,6 +26,10 @@ public class GuestImpl implements Guest {
 
 	public Map<String, String> getUsers() {
 		return users;
+	}
+
+	public Map<String, ArrayList<Order>> getOrderMap() {
+		return orderMap;
 	}
 
 	@Override
@@ -91,17 +98,11 @@ public class GuestImpl implements Guest {
 				System.err.println("error 장바구니에 없는 코드 입니다.");
 		}
 	}
-	
-	@Override
-	public void wishBuy() {
-		wishList();
-		System.out.print("구매할 책의 코드를 입력하세요. : ");
-	}
 
 	@Override
 	public void buy() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("구매할 책의 코드를 입력 하세요 : ");
 	}
 
 	@Override
@@ -121,7 +122,5 @@ public class GuestImpl implements Guest {
 		// TODO Auto-generated method stub
 
 	}
-
-	
 
 }

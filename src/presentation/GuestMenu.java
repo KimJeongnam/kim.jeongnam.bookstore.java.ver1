@@ -1,7 +1,7 @@
 package presentation;
 
+import domain.Login;
 import domain.Wish;
-import service.Login;
 
 public class GuestMenu implements Menu{
 	private static Wish wish = null;

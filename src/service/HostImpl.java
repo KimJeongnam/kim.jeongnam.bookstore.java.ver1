@@ -1,10 +1,12 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
 import domain.Book;
 import domain.Code;
+import domain.Order;
 import domain.Shelf;
 import presentation.Console;
 import presentation.Menu;
@@ -208,6 +210,8 @@ public class HostImpl implements Host{
 		}
 		
 		users.put(id, pw);
+		ArrayList<Order> list = new ArrayList<Order>();
+		GuestImpl.getInstance().getOrderMap().put(id, list);
 		System.out.println("\t회원가입 완료");
 		System.out.println(Menu.RESULT_FOOTER);
 	}

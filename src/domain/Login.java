@@ -1,11 +1,11 @@
-package service;
+package domain;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import domain.Code;
-import domain.Session;
 import presentation.Console;
+import service.GuestImpl;
+import service.Host;
 
 public class Login {
 	private static Session session= null;

@@ -5,11 +5,13 @@ import java.util.Map;
 
 public class Wish {
 	private static Map<String, Wish> userWish = new HashMap<String, Wish>();
+	public static Map<String, Wish> getUserWish(){ return userWish; }
+	
 	private Map<Integer, Integer> wishList = new HashMap<Integer, Integer>();
 	
 	public Map<Integer, Integer> getWishList(){ return wishList; }
 	
-	public static Map<String, Wish> getUserWish(){ return userWish; }
+	
 	
 	// 장바구니 리스트 출력
 	public void getInfo() {

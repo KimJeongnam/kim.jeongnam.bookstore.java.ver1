@@ -1,8 +1,8 @@
 package presentation;
 
 import domain.Code;
+import domain.Login;
 import service.HostImpl;
-import service.Login;
 import service.Shop;
 
 public class ShopMenu implements Menu {

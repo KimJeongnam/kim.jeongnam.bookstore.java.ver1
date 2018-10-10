@@ -6,7 +6,6 @@ public interface Guest {
 	public void cartAdd() throws Exception;
 	public void cartDel();
 	
-	public void wishBuy();
 	public void buy();	
 	public void nowBuy();
 	public void orderList();	

@@ -1,31 +1,38 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Order {
-	private static Map<Object, Object> orderList=null;
+	private String buyCode;
+	private Wish wish;
+	private boolean status;
 	
-	Order(){
-		orderList = new HashMap<Object, Object>();
+	public Order(String buyCode, Wish wish) {
+		this.buyCode = buyCode;
+		this.wish = wish;
 	}
 	
-	public void orderAdd(String id, Wish wish) {
-		if(orderList.containsKey(id)) {
-			Wish getWish = (Wish)orderList.get(id);
-			
-			Map<Integer, Integer> buf = getWish.getWishList();
-			Map<Integer, Integer> order = wish.getWishList();
-			
-			for(int key : buf.keySet()) {
-				if(order.containsKey(key)) {
-					int getStock = order.get(key);
-					order.put(key, getStock+=buf.get(key));
-				}
-			}
-		}else {
-			orderList.put("id", id);
-			orderList.put("wish" , wish);
-		}
+	public String getBuyCode() {
+		return buyCode;
 	}
+
+	public void setBuyCode(String buyCode) {
+		this.buyCode = buyCode;
+	}
+
+	public Wish getWish() {
+		return wish;
+	}
+
+	public void setWish(Wish wish) {
+		this.wish = wish;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 }
+
