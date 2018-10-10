@@ -10,6 +10,7 @@ public class HostMenu implements Menu {
 		return hostmenu;
 	}
 
+
 	@Override
 	public void printMenu() {
 		System.out.println("----------------관리자 메뉴---------------");
@@ -23,7 +24,7 @@ public class HostMenu implements Menu {
 		// TODO Auto-generated method stub
 		String option = null;
 
-		int code = Code.ERROR;
+		int code = Code.HOST_MENU;
 
 		printMenu();
 
@@ -37,7 +38,7 @@ public class HostMenu implements Menu {
 
 			break;
 		case "3":
-
+			code = Code.SHOP_LOGIN;
 			break;
 		default:
 

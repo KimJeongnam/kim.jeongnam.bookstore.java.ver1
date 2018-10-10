@@ -2,6 +2,7 @@ package domain;
 
 public interface Code {
 	public static final int ERROR = -1;
+	public static final int EXIT = 0;
 	public static final int SHOP_LOGIN = 999;
 	public static final int HOST_LOGIN = 101;
 	public static final int GUEST_LOGIN = 201;
@@ -30,4 +31,8 @@ public interface Code {
 	public static final int GUEST_ORDER_LIST = 221; // 장바구니 내부 목록
 	public static final int GUEST_REFUND = 230;		// 환불
 	
+	public static boolean isNumeric(String str)
+	{
+	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+	}
 }

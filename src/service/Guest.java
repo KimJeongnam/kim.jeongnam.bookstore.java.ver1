@@ -1,6 +1,7 @@
 package service;
 
 public interface Guest {
+	
 	public void wishList();
 	public void cartAdd();
 	public void cartDel();

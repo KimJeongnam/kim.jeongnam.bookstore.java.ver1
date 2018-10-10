@@ -12,7 +12,7 @@ public class HostOrderMenu implements Menu{
         System.out.println(Menu.HEADER_BAR+"주문 관리"+Menu.HEADER_BAR);
         System.out.println("");
         System.out.println(Menu.FOOTER_BAR);
-        System.out.println(Menu.INPUT_STR);
+        System.out.print(Menu.INPUT_STR);
     }
 
     @Override

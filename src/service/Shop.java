@@ -3,6 +3,7 @@ package service;
 import java.util.HashMap;
 import java.util.Map;
 
+import domain.Book;
 import domain.Code;
 import presentation.HostMenu;
 import presentation.HostStockMenu;
@@ -22,10 +23,21 @@ public class Shop {
 		map.put(Code.HOST_MENU, HostMenu.getInstance());
 		map.put(Code.HOST_STOCK_MENU, new HostStockMenu(Code.HOST_STOCK_MENU));
 		
+		//test Book
+		Book book1 = new Book();
+        book1.setBookName("나의라임오렌지나무");
+        book1.setAuthor("홍길동");
+        book1.setPrice(35000);
+        book1.setStock(250);
+        HostImpl.getInstance().bookAdd(book1);
 		
 		for(code = Code.SHOP_LOGIN; map.containsKey(code);) {
 			try {
 			map.get(code).execute();
+			
+			if(code == Code.ERROR) {
+				System.err.println("Error!");
+			}
 			}catch(Exception e) {
 				if(debug)
 					e.printStackTrace();
