@@ -138,10 +138,7 @@ public class GuestImpl implements Guest {
 				GuestMenu.getWish().getWishList().remove(code);
 			}
 			
-			Random random = new Random();
-			int buyCode = random.nextInt(10000);
-			
-			Order.addOrder(id, Integer.toString(buyCode), buylist);
+			String buyCode = Order.addOrder(id, buylist);
 			System.out.println("구매요청완료 요청코드 : "+buyCode);
 		}
 		
@@ -158,7 +155,87 @@ public class GuestImpl implements Guest {
 			return;
 		}
 		System.out.println(Menu.RESULT_HEADER+"구매 요청 목록"+Menu.RESULT_HEADER);
-		for(Map<Object, Object> data: buyAsklist) {
+		printBuyList(buyAsklist);
+	}
+
+	@Override
+	public void nowBuy() throws Exception{
+		// TODO Auto-generated method stub
+		String strBookcode = "";
+		
+		while(true) {
+			String id = Login.getSession().getSession().get("id");
+			HostImpl.getInstance().bookList();
+			System.out.print("구매할 책 코드 입력 [이전 : 0] : ");
+			strBookcode = Console.input();
+			
+			if(strBookcode.equals("0")) break;
+			
+			if(!Code.isNumeric(strBookcode)) {
+				throw new Exception("Error 코드는 숫자입니다.");
+			}
+			int code = Integer.parseInt(strBookcode);
+			
+			if (!Shelf.getShelf().containsKey(code))
+				throw new Exception("error 책 목록에  없는 코드입니다.!");
+			
+			System.out.print("수량을 입력하세요 : ");
+			String strStock = Console.input();
+			if (!Code.isNumeric(strStock))
+				throw new Exception("error 수량은 숫자입니다.!");
+
+			int stock = Integer.parseInt(strStock);
+			
+			Map<Integer, Integer> buyitem = new HashMap<Integer, Integer>();
+			buyitem.put(code, stock);
+			
+			String buyCode = Order.addOrder(id, buyitem);
+			System.out.println("구매요청완료 요청코드 : "+buyCode);
+		}
+		
+		
+	}
+
+	@Override
+	public void refund() {
+		// TODO Auto-generated method stub
+		System.out.println(Menu.RESULT_HEADER+"구매 완료 목록"+Menu.RESULT_HEADER);
+		String id = Login.getSession().getSession().get("id");
+		
+		
+		String buyCode = "";
+		
+		while(true) {
+			ArrayList<Map<Object, Object>> buyList = Order.getBuyList(id);
+			
+			if(buyList.isEmpty()) {
+				System.err.println("구매 완료된 목록이 없습니다.");
+				System.out.println(Menu.RESULT_FOOTER);
+				return;
+			}
+			printBuyList(buyList);
+			
+			System.out.print("환불 요청할 구매 코드를 입력하세요 [이전 :0 전체:'all'] :");
+			buyCode = Console.input();
+			
+			if(buyCode.equals("0")) break;
+			
+			if(buyCode.equals("all")) {
+				Order.refundAskAllAction(id);
+				return;
+			}
+			
+			if(!Order.orderList.containsKey(buyCode)) {
+				System.err.println("목록에 없는 주문코드 입니다.");
+				continue;
+			}
+			Order.refundAskAction(id, buyCode);
+		}
+		
+	}
+	
+	private void printBuyList(ArrayList<Map<Object, Object>> bufList) {
+		for(Map<Object, Object> data: bufList) {
 			System.out.print("구매 코드 : "+data.get("buyCode"));
 			Map<Integer, Integer> list = (Map<Integer, Integer>)data.get("orderList");
 			
@@ -181,23 +258,6 @@ public class GuestImpl implements Guest {
 			
 		}
 		System.out.println(Menu.RESULT_FOOTER);
-	}
-
-	@Override
-	public void nowBuy() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void orderList() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void refund() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

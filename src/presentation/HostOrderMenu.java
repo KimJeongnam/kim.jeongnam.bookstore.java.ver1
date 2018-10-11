@@ -32,10 +32,13 @@ public class HostOrderMenu implements Menu {
 				HostImpl.getInstance().orderList();
 				break;
 			case "2":
+				HostImpl.getInstance().orderConfirm();
 				break;
 			case "3":
+				HostImpl.getInstance().orderCancle();
 				break;
 			case "4":
+				HostImpl.getInstance().saleTotal();
 				break;
 			case "5":
 				break;

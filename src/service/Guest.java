@@ -8,7 +8,6 @@ public interface Guest {
 	
 	public void buy() throws Exception;	
 	public void buyAskList();
-	public void nowBuy();
-	public void orderList();	
+	public void nowBuy() throws Exception;
 	public void refund();	// 환불
 }

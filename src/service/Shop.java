@@ -14,13 +14,18 @@ import presentation.ShopMenu;
 public class Shop {
 	private static int code;
 	
+	
+	// 외부에서 코드를 셋할수 있도록 setter 정의
 	public static void setCode(int code) {
 		Shop.code = code;
 	}
 	
 	public Shop(boolean debug) {
+		// key 코드  value = 메뉴
 		Map<Integer, Menu> map = new HashMap<Integer, Menu>();
-		map.put(Code.SHOP_LOGIN, new ShopMenu());
+		
+		// map 에 shopmenu, hostmenu, hostStockMenu, GuestMenu 추가
+		map.put(Code.SHOP_LOGIN, new ShopMenu());	
 		map.put(Code.HOST_MENU, new HostMenu());
 		map.put(Code.HOST_STOCK_MENU, new HostStockMenu());
 		map.put(Code.GUEST_MENU, new GuestMenu());
@@ -33,7 +38,8 @@ public class Shop {
         book1.setStock(250);
         HostImpl.getInstance().bookAdd(book1);
 		
-		for(code = Code.SHOP_LOGIN; map.containsKey(code);) {
+        // 코드가 map 에 있으면 실행 없다면 종료.
+		for(code = Code.SHOP_LOGIN; map.containsKey(code);) {	
 			try {
 			map.get(code).execute();
 			

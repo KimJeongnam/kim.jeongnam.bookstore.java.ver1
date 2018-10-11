@@ -47,11 +47,13 @@ public class GuestMenu implements Menu{
 				new GuestWishMenu().execute();
 				break;
 			case "2":
+				GuestImpl.getInstance().nowBuy();
 				break;
 			case "3":
 				GuestImpl.getInstance().buyAskList();
 				break;
 			case "4":
+				GuestImpl.getInstance().refund();
 				break;
 			case "5":
 				Login.getSession().getSession().clear();
