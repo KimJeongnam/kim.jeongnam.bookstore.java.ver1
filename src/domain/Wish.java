@@ -9,6 +9,9 @@ public class Wish {
 	
 	private Map<Integer, Integer> wishList = new HashMap<Integer, Integer>();
 	
+	public void setWishList(Map<Integer, Integer> wishList) {
+		this.wishList = wishList;
+	}
 	public Map<Integer, Integer> getWishList(){ return wishList; }
 	
 	
@@ -25,6 +28,14 @@ public class Wish {
 					Integer.toString(wishList.get(key)));
 		}
 		System.out.println("총 금액 : "+getTotal());
+	}
+	
+	public void buyBook() throws Exception{
+		
+	}
+	
+	public void buyTotal(Wish wish) {
+		
 	}
 	
 	// 장바구니의 총 금액 추출

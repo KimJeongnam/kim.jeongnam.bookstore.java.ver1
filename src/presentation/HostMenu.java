@@ -29,7 +29,7 @@ public class HostMenu implements Menu {
 			code = Code.HOST_STOCK_MENU;
 			break;
 		case "2":
-
+			new HostOrderMenu().execute();
 			break;
 		case "3":
 			code = Code.SHOP_LOGIN;

@@ -33,6 +33,7 @@ public class GuestWishMenu implements Menu {
 				GuestImpl.getInstance().cartDel();
 				break;
 			case "3":
+				GuestImpl.getInstance().buy();
 				break;
 			case "4":
 				break;

@@ -166,12 +166,20 @@ public class HostImpl implements Host{
     @Override
     public void orderList() {
         // TODO Auto-generated method stub
-        
+        System.out.println(Menu.RESULT_HEADER+"주문 목록"+Menu.RESULT_HEADER);
+        Order.printOrderOnCallList();
+        System.out.println(Menu.RESULT_FOOTER);
     }
 
     @Override
     public void orderConfirm() {
-        // TODO Auto-generated method stub
+    	orderList();
+    	System.out.println(Menu.HEADER_BAR+"구매 승인"+Menu.HEADER_BAR);
+    	Order.printOrderOnCallList();
+    	System.out.println(Menu.FOOTER_BAR);
+    	
+        System.out.print("구매 승인할 코드를 입력하세요  [이전 0, 전체 결제 : 'all'] : ");
+        
         
     }
 
