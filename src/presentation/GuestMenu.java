@@ -5,25 +5,11 @@ import domain.Wish;
 import service.GuestImpl;
 
 public class GuestMenu implements Menu{
-	private static Wish wish = null;
+	private static Wish wish = null;       // 장바구니 정적 변수
 	
-	public static void initWish() { wish = new Wish();}
+	public static void initWish() { wish = new Wish();}    // 장바구니 초기화
 	public static Wish getWish() { return wish; }
-
-	public GuestMenu() {
-		
-		String id = "";
-		if(Login.getSession() != null)
-			id = Login.getSession().getSession().get("id");
-		
-		if(!Wish.getUserWish().containsKey(id)) {
-			wish = new Wish();
-			Wish.getUserWish().put(id, wish);
-		}
-		else 
-			wish = Wish.getUserWish().get(id);
-		
-	}
+	
 	@Override
 	public void printMenu() {
 		// TODO Auto-generated method stub
@@ -36,6 +22,21 @@ public class GuestMenu implements Menu{
 	@Override
 	public void execute() throws Exception {
 		// TODO Auto-generated method stub
+	    String id = "";
+	    // 로그인에 세션이 null 값이 아닐때의 처리
+        if(Login.getSession() != null){ 
+            id = Login.getSession().getMap().get("id"); // session에서 id를 불러온다.
+            
+            if(!Wish.getUserWish().containsKey(id)) {  // user의 id가 해당 맵에 없다면
+                wish = new Wish();                              // 새로운 장바구니 생성 후 put
+                Wish.getUserWish().put(id, wish);          
+            }
+            else 
+                wish = Wish.getUserWish().get(id);
+        }
+            
+        
+        
 		String option = "";
 		
 		while(!option.equals("5")) {
@@ -44,19 +45,19 @@ public class GuestMenu implements Menu{
 			
 			switch(option) {
 			case "1":
-				new GuestWishMenu().execute();
+				new GuestWishMenu().execute();      //장바구니 메뉴 실행
 				break;
 			case "2":
-				GuestImpl.getInstance().nowBuy();
+				GuestImpl.getInstance().nowBuy();   //바로구매
 				break;
 			case "3":
-				GuestImpl.getInstance().buyAskList();
+				GuestImpl.getInstance().buyAskList();   //구매 요청 목록
 				break;
 			case "4":
-				GuestImpl.getInstance().refund();
+				GuestImpl.getInstance().refund();       // 환불
 				break;
 			case "5":
-				Login.getSession().getSession().clear();
+				Login.getSession().getMap().clear();    // 세션 로그아웃
 				break;
 				default:
 					System.err.println("Error 메뉴 번호 입력 에러!");

@@ -21,13 +21,12 @@ public class Login {
 	public void tryLogin() throws Exception {
 		String str = "";
 		Map<String, String> user = null;
-		if (code == Code.HOST_LOGIN) {
+		
+		if (code == Code.HOST_LOGIN) {                // host 로그인 설정일시
 			str = "관리자";
 			user = new HashMap<String, String>();
 			user.put(Host.ID, Host.PW);
-			// Interface host ID
-			// Interface host PW
-		} else if (code == Code.GUEST_LOGIN) {
+		} else if (code == Code.GUEST_LOGIN) {    //Guest 로그인 설정일시
 			str = "고객";
 			user = GuestImpl.getInstance().getUsers();
 		}
@@ -44,8 +43,9 @@ public class Login {
 		if (!user.get(id).equals(pw))
 			throw new Exception("Password가 다릅니다");
 
-		session = new Session();
-		session.getSession().put("id", id);
+		// 앞의 에러처리를 모두 뚫고 왔다면 로그인 성공으로 판단 
+		session = new Session();          // static session에 세션 객체 생성
+		session.getMap().put("id", id);
 		System.out.println("===============================");
 		System.out.println("\t로그인 되었습니다.");
 		System.out.println("===============================");

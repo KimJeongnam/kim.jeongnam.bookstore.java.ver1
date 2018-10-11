@@ -3,7 +3,6 @@ package service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import domain.Book;
 import domain.Code;
@@ -18,7 +17,6 @@ import presentation.Menu;
 public class GuestImpl implements Guest {
 	private static GuestImpl guestImpl = new GuestImpl();
 	private Map<String, String> users = new HashMap<String, String>();
-	private Map<String, ArrayList<Order>> orderMap = new HashMap<String, ArrayList<Order>>();
 
 	private GuestImpl() {
 	}
@@ -29,10 +27,6 @@ public class GuestImpl implements Guest {
 
 	public Map<String, String> getUsers() {
 		return users;
-	}
-
-	public Map<String, ArrayList<Order>> getOrderMap() {
-		return orderMap;
 	}
 
 	@Override
@@ -47,22 +41,32 @@ public class GuestImpl implements Guest {
 		String strCode = "";
 		HostImpl.getInstance().bookList();
 
-		while (!strCode.equals("0")) {
+		while (true) {
 			System.out.print("장바구니에 담을 책의 코드를 입력하세요. [이전:0] : ");
 			strCode = Console.input();
 
 			if (strCode.equals("0"))
 				return;
+			
+			if (!Code.isNumeric(strCode)){
+                System.err.println("error 코드는 숫자입니다.!");
+                continue;
+            }
+
 
 			int code = Integer.parseInt(strCode);
 
-			if (!Shelf.getShelf().containsKey(code))
-				throw new Exception("error 책 목록에  없는 코드입니다.!");
+			if (!Shelf.getShelf().containsKey(code)){
+			    System.err.println("error 책 목록에  없는 코드입니다.!");
+			    continue;
+			}
 
 			System.out.print("수량을 입력하세요 : ");
 			String strStock = Console.input();
-			if (!Code.isNumeric(strStock))
-				throw new Exception("error 수량은 숫자입니다.!");
+			if (!Code.isNumeric(strStock)){
+                System.err.println("error 수량은 숫자입니다.!");
+                continue;
+            }
 
 			int stock = Integer.parseInt(strStock);
 			
@@ -71,6 +75,7 @@ public class GuestImpl implements Guest {
 				throw new Exception("책의 수량이 모자랍니다.");
 			else if(stock < 0)
 				throw new Exception("수량은 0보다큰 양수입니다.");
+			
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
 			
 			
@@ -92,9 +97,10 @@ public class GuestImpl implements Guest {
 			strCode = Console.input();
 
 			if (!Code.isNumeric(strCode)) {
-				System.err.println("error 코드는 숫자만 포함합니다.");
+				System.err.println("[Error] 코드는 숫자만 포함합니다.");
 				continue;
 			}
+			
 			int code = Integer.parseInt(strCode);
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
 
@@ -109,7 +115,7 @@ public class GuestImpl implements Guest {
 	}
 
 	@Override
-	public void buy() throws Exception{
+	public void buy() {
 		// TODO Auto-generated method stub
 		String option = "";
 		
@@ -117,7 +123,7 @@ public class GuestImpl implements Guest {
 			System.out.print("구매할 책의 코드를 입력 하세요  [이전 0: 모두구매 'all'] : ");
 			option = Console.input();
 			Map<Integer, Integer> buylist=null;
-			String id = Login.getSession().getSession().get("id");
+			String id = Login.getSession().getMap().get("id");
 			if(option.equals("0")) break;
 			if(option.equals("all")) {
 				buylist = GuestMenu.getWish().getWishList();
@@ -125,12 +131,15 @@ public class GuestImpl implements Guest {
 				Wish.getUserWish().put(id, GuestMenu.getWish());
 			}else {
 				if(!Code.isNumeric(option)) {
-					throw new Exception("Error 코드는 숫자입니다.");
+				    System.err.println("[Error] 코드는 숫자만 포함합니다.");
+	                continue;
 				}
 				int code = Integer.parseInt(option);
 				
-				if(!GuestMenu.getWish().getWishList().containsKey(code)) 
-					throw new Exception("Error 장바구니 목록에 없습니다.");
+				if(!GuestMenu.getWish().getWishList().containsKey(code)){
+				    System.err.println("[Error] 장바구니 목록에 없습니다.");
+				    continue;
+				}
 				
 				int stock = GuestMenu.getWish().getWishList().get(code);
 				buylist = new HashMap<Integer, Integer>();
@@ -144,10 +153,9 @@ public class GuestImpl implements Guest {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void buyAskList() {
-		String id = Login.getSession().getSession().get("id");
+		String id = Login.getSession().getMap().get("id");
 		ArrayList<Map<Object, Object>> buyAsklist = Order.getBuyAskList(id);
 		
 		if(buyAsklist.isEmpty()) {
@@ -164,7 +172,7 @@ public class GuestImpl implements Guest {
 		String strBookcode = "";
 		
 		while(true) {
-			String id = Login.getSession().getSession().get("id");
+			String id = Login.getSession().getMap().get("id");
 			HostImpl.getInstance().bookList();
 			System.out.print("구매할 책 코드 입력 [이전 : 0] : ");
 			strBookcode = Console.input();
@@ -172,17 +180,22 @@ public class GuestImpl implements Guest {
 			if(strBookcode.equals("0")) break;
 			
 			if(!Code.isNumeric(strBookcode)) {
-				throw new Exception("Error 코드는 숫자입니다.");
+			    System.err.println("[Error] 코드는 숫자만 포함합니다.");
+                continue;
 			}
 			int code = Integer.parseInt(strBookcode);
 			
-			if (!Shelf.getShelf().containsKey(code))
-				throw new Exception("error 책 목록에  없는 코드입니다.!");
+			if (!Shelf.getShelf().containsKey(code)){
+			    System.err.println("[Error] 책 목록에  없는 코드입니다.!");
+                continue;
+			}
 			
 			System.out.print("수량을 입력하세요 : ");
 			String strStock = Console.input();
-			if (!Code.isNumeric(strStock))
-				throw new Exception("error 수량은 숫자입니다.!");
+			if (!Code.isNumeric(strStock)){
+                System.err.println("error 수량은 숫자입니다.!");
+                continue;
+            }
 
 			int stock = Integer.parseInt(strStock);
 			
@@ -200,7 +213,7 @@ public class GuestImpl implements Guest {
 	public void refund() {
 		// TODO Auto-generated method stub
 		System.out.println(Menu.RESULT_HEADER+"구매 완료 목록"+Menu.RESULT_HEADER);
-		String id = Login.getSession().getSession().get("id");
+		String id = Login.getSession().getMap().get("id");
 		
 		
 		String buyCode = "";
@@ -209,7 +222,7 @@ public class GuestImpl implements Guest {
 			ArrayList<Map<Object, Object>> buyList = Order.getBuyList(id);
 			
 			if(buyList.isEmpty()) {
-				System.err.println("구매 완료된 목록이 없습니다.");
+				System.out.println("구매 완료된 목록이 없습니다.");
 				System.out.println(Menu.RESULT_FOOTER);
 				return;
 			}
@@ -234,7 +247,8 @@ public class GuestImpl implements Guest {
 		
 	}
 	
-	private void printBuyList(ArrayList<Map<Object, Object>> bufList) {
+	@SuppressWarnings("unchecked")
+    private void printBuyList(ArrayList<Map<Object, Object>> bufList) {
 		for(Map<Object, Object> data: bufList) {
 			System.out.print("구매 코드 : "+data.get("buyCode"));
 			Map<Integer, Integer> list = (Map<Integer, Integer>)data.get("orderList");

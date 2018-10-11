@@ -2,7 +2,7 @@ package service;
 
 public interface Guest {
 	
-	public void wishList();
+	public void wishList();    
 	public void cartAdd() throws Exception;
 	public void cartDel();
 	

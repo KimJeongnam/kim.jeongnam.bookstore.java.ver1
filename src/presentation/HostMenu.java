@@ -29,15 +29,14 @@ public class HostMenu implements Menu {
 			code = Code.HOST_STOCK_MENU;
 			break;
 		case "2":
-			new HostOrderMenu().execute();
+			code = Code.HOST_ORDER_MENU;
 			break;
 		case "3":
 			code = Code.SHOP_LOGIN;
 			break;
 		default:
-
-			break;
-
+		    System.err.println("메뉴선택 에러. 목록에없는 메뉴입니다.");
+		    break;
 		}
 
 		Shop.setCode(code);

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="service.HostImpl" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service/HostImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="381" width="303" x="765" y="-131"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="presentation.HostStockMenu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/HostStockMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="219" width="154" x="2793" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="presentation.GuestMenu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/GuestMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="237" width="117" x="2636" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="service.Command" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service/Command.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="165" width="120" x="39" y="-131"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="domain.Login" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Login.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="219" width="150" x="2446" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="presentation.GuestWishMenu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/GuestWishMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="201" width="141" x="2987" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="7" language="java" name="domain" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="122" x="199" y="-131"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="8" language="java" name="service.Guest" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service/Guest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="273" width="125" x="3989" y="404"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="9" language="java" name="service" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="122" x="361" y="-131"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="10" language="java" name="domain.Code" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Code.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="579" width="202" x="523" y="-131"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="domain.Session" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Session.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="201" width="216" x="2413" y="404"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="presentation.ShopMenu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/ShopMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="219" width="140" x="3168" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="domain.Book" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Book.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="417" width="176" x="3751" y="404"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="14" language="java" name="presentation" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="122" x="1118" y="-130"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="15" language="java" name="domain.Money" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Money.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="183" width="172" x="1280" y="-131"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="domain.Wish" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Wish.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="309" width="251" x="2669" y="404"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="presentation.HostMenu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/HostMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="201" width="117" x="3348" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="domain.Shelf" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Shelf.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="183" width="198" x="3751" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="service.Shop" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service/Shop.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="201" width="122" x="1492" y="-131"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="presentation.HostOrderMenu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/HostOrderMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="219" width="196" x="3505" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="service.GuestImpl" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service/GuestImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="399" width="318" x="3989" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="22" language="java" name="service.Host" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/service/Host.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="345" width="141" x="781" y="338"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="23" language="java" name="presentation.Console" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/Console.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="201" width="158" x="1862" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="domain.Order" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/domain/Order.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="435" width="346" x="2060" y="-138"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="25" language="java" name="presentation.Menu" project="kim.jeongnam.bookstore.java.ver1" 
+    file="/kim.jeongnam.bookstore.java.ver1/src/presentation/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="273" width="178" x="3072" y="404"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="26">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="27" name="guestImpl"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="30" name="hostimpl"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="33" name="shelf"/>      
+      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="36" name="userWish"/>      
+      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="39" name="wish"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="41">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <realization id="42">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="43">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <realization id="44">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <realization id="45">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <realization id="46">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <realization id="47">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="48">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <association id="49">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="50" name="hostOrderMenu"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="53" name="session"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

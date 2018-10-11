@@ -28,9 +28,7 @@ public class HostStockMenu implements Menu {
 			HostImpl.getInstance().bookList();
 			break;
 		case "2":
-			AddBookHeader();
-			HostImpl.getInstance().InputbookAdd();
-			System.out.println(Menu.RESULT_FOOTER);
+			HostImpl.getInstance().bookAdd();
 			break;
 		case "3":
 			HostImpl.getInstance().bookUpdate();
@@ -49,8 +47,6 @@ public class HostStockMenu implements Menu {
 		Shop.setCode(code);
 	}
 
-	public void AddBookHeader() {
-		System.out.println(Menu.RESULT_HEADER + "도서 등록" + Menu.RESULT_FOOTER);
-	}
+	
 
 }

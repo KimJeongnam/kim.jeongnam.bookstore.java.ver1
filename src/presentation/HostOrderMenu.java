@@ -1,6 +1,8 @@
 package presentation;
 
+import domain.Code;
 import service.HostImpl;
+import service.Shop;
 
 public class HostOrderMenu implements Menu {
 	private static HostOrderMenu hostOrderMenu = new HostOrderMenu();
@@ -47,6 +49,7 @@ public class HostOrderMenu implements Menu {
 				break;
 			}
 		}
+		Shop.setCode(Code.HOST_MENU);
 	}
 
 }

@@ -4,12 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Session {
-	private Map<String, String> session = null;
+	private Map<String, String> map = new HashMap<String, String>();   // key= id , value = password
 	
-	public Session() {
-		session = new HashMap<String, String>();
-	}
-	
-	public Map<String, String> getSession(){ return session; }
+	public Map<String, String> getMap(){ return map; }
 	
 }

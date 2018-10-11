@@ -1,8 +1,6 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.Random;
 
 import domain.Book;
 import domain.Code;
@@ -42,7 +40,8 @@ public class HostImpl implements Host {
 		}
 	}
 
-	public void InputbookAdd() throws Exception {
+	public void bookAdd(){
+	    System.out.println(Menu.RESULT_HEADER + "도서 등록" + Menu.RESULT_HEADER);
 		System.out.print("책 제목 : ");
 		String bookName = Console.input();
 		while (bookName.isEmpty())
@@ -70,22 +69,11 @@ public class HostImpl implements Host {
 		int price = Integer.parseInt(strPrice);
 		int stock = Integer.parseInt(strStock);
 
-		bookAdd(new Book(bookName, author, price, stock));
+		int code = Shelf.bookAdd(new Book(bookName, author, price, stock));
+		System.out.println("도서 등록 완료 (Boock Code) : "+code);
+		System.out.println(Menu.RESULT_FOOTER);
 	}
 
-	@Override
-	public void bookAdd(Book book) {
-		// TODO Auto-generated method stub
-		Map<Integer, Book> shelf = Shelf.getShelf();
-
-		Random random = new Random();
-		int code = random.nextInt(10000);
-
-		while (shelf.containsKey(code))
-			code = random.nextInt(10000);
-
-		shelf.put(code, book);
-	}
 
 	@Override
 	public void bookUpdate() {
@@ -182,14 +170,11 @@ public class HostImpl implements Host {
 		System.out.println(Menu.RESULT_FOOTER);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void orderConfirm() {
 		String buyCode = "";
 
 		while (true) {
-			boolean noPass = false; // noPass가 True면 승인 불가
-
 			System.out.println(Menu.RESULT_HEADER + "구매 승인" + Menu.RESULT_HEADER);
 			Order.printOrderOnCallList();
 			System.out.println(Menu.FOOTER_BAR);
@@ -316,17 +301,7 @@ public class HostImpl implements Host {
 		}
 
 		users.put(id, pw);
-		ArrayList<Order> list = new ArrayList<Order>();
-		GuestImpl.getInstance().getOrderMap().put(id, list);
 		System.out.println("\t회원가입 완료");
 		System.out.println(Menu.RESULT_FOOTER);
 	}
-
-	/*
-	 * public static void main(String[] args) { String str = "111111"; String str1 =
-	 * "22221s";
-	 * 
-	 * System.out.println(Book.isNumeric(str1));
-	 * System.out.println(Book.isNumeric(str)); }
-	 */
 }
