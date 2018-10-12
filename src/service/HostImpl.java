@@ -261,10 +261,7 @@ public class HostImpl implements Host {
 					 *  
 					 *  false가 반환 되면 승인 불가 처리
 					 */
-					if (!stockSubConfirm(data)) {		
-						System.err.println("승인 불가 구매코드 : " + code);
-						return;
-					}
+					data.put("status", true);
 				}
 				System.out.println("전체 승인 완료");
 				System.out.println(Menu.RESULT_FOOTER);
@@ -280,65 +277,13 @@ public class HostImpl implements Host {
 
 			Map<Object, Object> data = Order.orderList.get(buyCode);
 			
-			if (!stockSubConfirm(data)){
-				System.err.println("승인 불가 구매코드 : " + buyCode);
-				return;
-			}
+			data.put("status", true);
 			System.out.println("승인 완료");
 			System.out.println(Menu.RESULT_FOOTER);
 		}
 
 	}
 
-	/*
-	 *  주문 요청 데이터를 받고 책장에 해당 물품이 남아있다면 
-	 *  책장의 수량에서 요청한 수량만큼 뺀 후 true 반환
-	 *  
-	 *  모자라다면  false 반환
-	 */
-	@SuppressWarnings("unchecked")
-	private boolean stockSubConfirm(Map<Object, Object> data) {
-		Map<Integer, Integer> list = (Map<Integer, Integer>) data.get("orderList");
-		boolean noPass = false;
-
-		/*
-		 * noPass :
-		 * 책장의 책의 수량이 구매요청한 수량에 못미칠경우 
-		 * true로 세팅한다. 
-		 */
-		for (int bookCode : list.keySet()) {
-			int stock = list.get(bookCode);
-			Book book = Shelf.getShelf().get(bookCode);
-
-			int bookStock = book.getStock();
-			if (bookStock < stock) {
-				System.err.println("책 코드 :" + bookCode + " 의 수량이 부족합니다 남은 수량 : " + book.getStock() + " 요청 수량 : " + stock);
-				noPass = true;
-			}
-		}
-		// noPass가 true라면 책장의 수량이 못미친다는 의미이므로 오류 출력 후 메소드 종료
-		if (noPass) {
-			System.err.println("책의 수량을 확인 후 승인하세요.");
-			return false;
-		}
-
-		/*
-		 * 구매요청된 리스트에서
-		 * 차례로 stock을 가져온후 책장에서 해당 책을 찾아 
-		 * 책장의 수량을 꺼낸후 - 하여 다시 저장한다.
-		 */
-		for (int bookCode : list.keySet()) {
-			int stock = list.get(bookCode);
-			Book book = Shelf.getShelf().get(bookCode);
-
-			int bookStock = book.getStock();
-			book.setStock(bookStock - stock);
-		}
-
-		// 해당 구매요청 리스트에서 결제상태를 true로 변환한다.
-		data.put("status", true);
-		return true;
-	}
 
 	/*
 	 * (non-Javadoc)

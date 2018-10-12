@@ -23,12 +23,12 @@ public class Shop {
 
     public Shop(boolean debug) {
     	 // test Book
-        /* Book book1 = new Book();
+         Book book1 = new Book();
          book1.setBookName("나의라임오렌지나무");
          book1.setAuthor("홍길동");
          book1.setPrice(35000);
          book1.setStock(250);
-         Shelf.bookAdd(book1);*/
+         Shelf.bookAdd(book1);
     	
         // key 코드 value = 메뉴
     	// 다형성 적용 (interface Menu)

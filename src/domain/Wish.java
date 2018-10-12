@@ -38,7 +38,7 @@ public class Wish {
 					Integer.toString(book.getPrice()), 
 					Integer.toString(wishList.get(key)));
 		}
-		System.out.println("총 금액 : "+getTotal());	//	장바구니의 총 금액 출력
+		System.out.println("총 금액 : "+Money.moneyToString(getTotal())+"원");	//	장바구니의 총 금액 출력
 	}
 	
 	

@@ -96,6 +96,15 @@ public class GuestImpl implements Guest {
 			else if(stock < 0)
 				throw new Exception("수량은 0보다큰 양수입니다.");
 			
+			// >>>>>>> 수정  수량 감소
+			if(stock > book.getStock()) {
+				System.err.println("해당 책의 남은 수량이 없습니다.");
+				continue;
+			}
+			
+			book.setStock(book.getStock()-stock);
+			// <<<<<<<
+			
 			// GuestMenu에잇는 장바구니의 주소값 을 가져온다.
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
 			
@@ -127,9 +136,15 @@ public class GuestImpl implements Guest {
 			
 			int code = Integer.parseInt(strCode);
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
-
+			
 			if (wishList.containsKey(code)) {
+				Book book = Shelf.getShelf().get(code);
+				
+				int stock = wishList.get(code);		// 장바구니 목록 수량
+				book.setStock(book.getStock()+stock);
+				
 				wishList.remove(code);
+				
 				System.out.println(Menu.RESULT_FOOTER);
 				System.out.println("\t목록에서 삭제되었습니다.");
 				System.out.println(Menu.RESULT_FOOTER);
@@ -227,6 +242,14 @@ public class GuestImpl implements Guest {
 				System.err.println("수량은 0이 될 수 없습니다.!");
 				continue;
 			}
+			
+			Book book = Shelf.getShelf().get(code);
+			if(stock > book.getStock()) {
+				System.err.println("해당 책의 남은 수량이 없습니다.");
+				continue;
+			}
+			
+			book.setStock(book.getStock()-stock);
 			
 			Map<Integer, Integer> buyitem = new HashMap<Integer, Integer>();
 			buyitem.put(code, stock);
