@@ -1,8 +1,10 @@
 package presentation;
 
+import domain.Code;
 import domain.Login;
 import domain.Wish;
 import service.GuestImpl;
+import service.Shop;
 
 public class GuestMenu implements Menu{
 	private static Wish wish = null;       // 장바구니 정적 변수
@@ -58,6 +60,7 @@ public class GuestMenu implements Menu{
 				break;
 			case "5":
 				Login.getSession().getMap().clear();    // 세션 로그아웃
+				Shop.setCode(Code.SHOP_LOGIN);
 				break;
 				default:
 					System.err.println("Error 메뉴 번호 입력 에러!");

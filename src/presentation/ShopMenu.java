@@ -6,12 +6,6 @@ import service.HostImpl;
 import service.Shop;
 
 public class ShopMenu implements Menu {
-
-	public void userAddMenu() {
-		System.out.println(Menu.RESULT_HEADER+Menu.RESULT_HEADER);
-		System.out.println("\t회원가입");
-		System.out.println(Menu.RESULT_FOOTER);
-	}
 	
 	@Override
     public void printMenu() {
@@ -32,18 +26,17 @@ public class ShopMenu implements Menu {
         
         switch (option) {
         case "1":
-        	login = new Login(Code.GUEST_LOGIN);
+        	login = new Login(Code.GUEST_LOGIN);	// login 고객 모드
             login.tryLogin();
-            new GuestMenu().execute();
+            new GuestMenu().execute();	// geustMenu 실행
             break;
         case "2":
-            login = new Login(Code.HOST_LOGIN);
+            login = new Login(Code.HOST_LOGIN);		// login 호스트 모드
             login.tryLogin();
             code = Code.HOST_MENU;
             break;
         case "3":
-        	userAddMenu();
-        	HostImpl.getInstance().userAdd();
+        	HostImpl.getInstance().userAdd();		// 유저 추가 호출
             break;
         case "4":
         	code = Code.EXIT;
@@ -52,6 +45,7 @@ public class ShopMenu implements Menu {
             throw new Exception("메뉴 선택 에러");
         }
 
+        // Shop의 code를 Set함
         Shop.setCode(code);
     }
 

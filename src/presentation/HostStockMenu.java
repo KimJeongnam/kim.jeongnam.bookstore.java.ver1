@@ -25,16 +25,16 @@ public class HostStockMenu implements Menu {
 
 		switch (option) {
 		case "1":
-			HostImpl.getInstance().bookList();
+			HostImpl.getInstance().bookList();	// 책 목록
 			break;
 		case "2":
-			HostImpl.getInstance().bookAdd();
+			HostImpl.getInstance().bookAdd();	// 책 추가
 			break;
 		case "3":
-			HostImpl.getInstance().bookUpdate();
+			HostImpl.getInstance().bookUpdate();	//책 수정
 			break;
 		case "4":
-			HostImpl.getInstance().bookDelete();
+			HostImpl.getInstance().bookDelete();	// 책 삭제
 			break;
 		case "5":
 			code = Code.HOST_MENU;

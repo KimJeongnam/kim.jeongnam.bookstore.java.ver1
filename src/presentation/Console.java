@@ -16,7 +16,7 @@ public class Console {
 		String str = "";
 		
 		try {
-			str = reader.readLine();
+			str = reader.readLine().trim();
 		}catch(IOException e) {
 			System.out.println("키보드 입력 에러");
 			e.printStackTrace();

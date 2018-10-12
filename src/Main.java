@@ -1,3 +1,4 @@
+
 import service.Shop;
 
 public class Main {
@@ -5,8 +6,10 @@ public class Main {
 	    /*
 	     * ObjectAid UML : http://www.objectaid.com/download
 	     */
+		
 		boolean debug = false;
 		new Shop(debug);
 	}
 }
+
 

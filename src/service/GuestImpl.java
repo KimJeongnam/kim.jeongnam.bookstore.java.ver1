@@ -15,26 +15,31 @@ import presentation.GuestMenu;
 import presentation.Menu;
 
 public class GuestImpl implements Guest {
-	private static GuestImpl guestImpl = new GuestImpl();
+	// 싱글턴 GuestImpl 객체 생성
+	private static GuestImpl guestImpl = new GuestImpl();	
+	// HashMap  key=유저의id  value=유저의pw
 	private Map<String, String> users = new HashMap<String, String>();
 
-	private GuestImpl() {
-	}
+	// 외부에서 생성 불가능하게함
+	private GuestImpl() {}
 
+	// GuestImpl 객체의 주소값을 던저주는 정적 메소드 
 	public static GuestImpl getInstance() {
 		return guestImpl;
 	}
 
+	// 유저 정보를 담고있는 Map 반환
 	public Map<String, String> getUsers() {
 		return users;
 	}
 
+	// 장바구니 목록 출력 메소드
 	@Override
 	public void wishList() {
-		Wish wish = GuestMenu.getWish();
-		wish.getInfo();
+		GuestMenu.getWish().getInfo();	// wish 의 getInfo 호출
 	}
 
+	// 장바구니 추가 메소드
 	@Override
 	public void cartAdd() throws Exception {
 		// TODO Auto-generated method stub
@@ -45,17 +50,20 @@ public class GuestImpl implements Guest {
 			System.out.print("장바구니에 담을 책의 코드를 입력하세요. [이전:0] : ");
 			strCode = Console.input();
 
-			if (strCode.equals("0"))
+			if (strCode.equals("0"))	// 0이면 반복 종료 
 				return;
 			
-			if (!Code.isNumeric(strCode)){
+			/*
+			 * 숫자가 아니라면 에러메세지 출력후 반복문 재시작
+			 */
+			if (!Code.isNumeric(strCode)){			
                 System.err.println("error 코드는 숫자입니다.!");
                 continue;
             }
 
-
 			int code = Integer.parseInt(strCode);
 
+			// 책장에서 shelf를 가져온후 해당 map에 code가 없다면 반복문 재시작
 			if (!Shelf.getShelf().containsKey(code)){
 			    System.err.println("error 책 목록에  없는 코드입니다.!");
 			    continue;
@@ -63,6 +71,7 @@ public class GuestImpl implements Guest {
 
 			System.out.print("수량을 입력하세요 : ");
 			String strStock = Console.input();
+			
 			if (!Code.isNumeric(strStock)){
                 System.err.println("error 수량은 숫자입니다.!");
                 continue;
@@ -70,15 +79,30 @@ public class GuestImpl implements Guest {
 
 			int stock = Integer.parseInt(strStock);
 			
+			if(stock <0) {
+				System.err.println("수량은 0이 될 수 없습니다.!");
+				continue;
+			}
+			/*
+			 * 책장에서 책의 정보가 들어있는 
+			 * Map<Integer, Book> 타입을 반환하는 getShelf 호출 후 
+			 * 입력받은 code 의 책의 정보를 가져와 book 에 주소값 저장
+			 */
 			Book book = Shelf.getShelf().get(code);
+			
+			// 책의 수량이 입력한 수량보다 적거나 0보다 작을시  
 			if(book.getStock() < stock)
 				throw new Exception("책의 수량이 모자랍니다.");
 			else if(stock < 0)
 				throw new Exception("수량은 0보다큰 양수입니다.");
 			
+			// GuestMenu에잇는 장바구니의 주소값 을 가져온다.
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
 			
-			
+			/*
+			 * 만약 장바구니에 이미 해당 bookCode가 있다면 
+			 * 해당 장바구니의 수량에 입력받은 수량을 더해 put 한다.
+			 */
 			if (wishList.containsKey(code)) {
 				int getsotck = wishList.get(code);
 				wishList.put(code, getsotck += stock);
@@ -198,6 +222,11 @@ public class GuestImpl implements Guest {
             }
 
 			int stock = Integer.parseInt(strStock);
+			
+			if(stock <0) {
+				System.err.println("수량은 0이 될 수 없습니다.!");
+				continue;
+			}
 			
 			Map<Integer, Integer> buyitem = new HashMap<Integer, Integer>();
 			buyitem.put(code, stock);

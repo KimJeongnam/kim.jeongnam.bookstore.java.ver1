@@ -22,31 +22,40 @@ public class Shop {
     }
 
     public Shop(boolean debug) {
+    	 // test Book
+        /* Book book1 = new Book();
+         book1.setBookName("나의라임오렌지나무");
+         book1.setAuthor("홍길동");
+         book1.setPrice(35000);
+         book1.setStock(250);
+         Shelf.bookAdd(book1);*/
+    	
         // key 코드 value = 메뉴
+    	// 다형성 적용 (interface Menu)
         Map<Integer, Menu> map = new HashMap<Integer, Menu>();
 
-        // map 에 shopmenu, hostmenu, hostStockMenu, GuestMenu 추가
+        /*
+         * 각 Menu 들은 Menu를 implements 함
+         */
+        //  map 에 shopmenu, hostmenu, hostStockMenu, GuestMenu 추가 
         map.put(Code.SHOP_LOGIN, new ShopMenu());
         map.put(Code.HOST_MENU, new HostMenu());
         map.put(Code.HOST_STOCK_MENU, new HostStockMenu());
         map.put(Code.HOST_ORDER_MENU, new HostOrderMenu());
         map.put(Code.GUEST_MENU, new GuestMenu());
-
-        // test Book
-        Book book1 = new Book();
-        book1.setBookName("나의라임오렌지나무");
-        book1.setAuthor("홍길동");
-        book1.setPrice(35000);
-        book1.setStock(250);
-        Shelf.bookAdd(book1);
-
-        // 반복문 > 코드가 map 에 있으면 실행 없다면 종료.
+      
+        /*
+         * 반복문 > 코드가 map 에 있으면 실행 없다면 종료.
+         * 동작 원리 
+         * put된 메뉴들의 execute() 함수에는 
+         * 
+         */
         for (code = Code.SHOP_LOGIN; map.containsKey(code);) {
             try {
-                map.get(code).execute(); // Menu Interface 의 execute() 실행
+                map.get(code).execute(); // Override한 execute() 실행
 
-            } catch (Exception e) {
-                if (debug)
+            } catch (Exception e) {	// 에러날시 처리부분
+                if (debug)	// debug가 true일시
                     e.printStackTrace();
                 System.err.println(e.getMessage());
                 code = Code.SHOP_LOGIN;
@@ -54,7 +63,10 @@ public class Shop {
             if (debug)
                 System.out.println(code);
         }
-
-        System.out.println("프로그램 종료");
+        
+        if(code == Code.EXIT)
+        	System.out.println("프로그램 종료");
+        else
+        	System.err.println("비정상 종료");
     }
 }

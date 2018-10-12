@@ -12,7 +12,6 @@ public class Login {
 	private int code;
 	
 	public Login(int code) {
-
 		this.code = code;
 	}
 	
@@ -20,6 +19,7 @@ public class Login {
 
 	public void tryLogin() throws Exception {
 		String str = "";
+		// key:id  value:pw 인 map
 		Map<String, String> user = null;
 		
 		if (code == Code.HOST_LOGIN) {                // host 로그인 설정일시
@@ -28,7 +28,7 @@ public class Login {
 			user.put(Host.ID, Host.PW);
 		} else if (code == Code.GUEST_LOGIN) {    //Guest 로그인 설정일시
 			str = "고객";
-			user = GuestImpl.getInstance().getUsers();
+			user = GuestImpl.getInstance().getUsers();	// User 목록 불러오기
 		}
 
 		System.out.print(str + " ID : ");
