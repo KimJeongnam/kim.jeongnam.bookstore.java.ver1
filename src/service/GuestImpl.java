@@ -96,14 +96,6 @@ public class GuestImpl implements Guest {
 			else if(stock < 0)
 				throw new Exception("수량은 0보다큰 양수입니다.");
 			
-			// >>>>>>> 수정  수량 감소
-			if(stock > book.getStock()) {
-				System.err.println("해당 책의 남은 수량이 없습니다.");
-				continue;
-			}
-			
-			book.setStock(book.getStock()-stock);
-			// <<<<<<<
 			
 			// GuestMenu에잇는 장바구니의 주소값 을 가져온다.
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
@@ -113,8 +105,16 @@ public class GuestImpl implements Guest {
 			 * 해당 장바구니의 수량에 입력받은 수량을 더해 put 한다.
 			 */
 			if (wishList.containsKey(code)) {
-				int getsotck = wishList.get(code);
-				wishList.put(code, getsotck += stock);
+				int getSotck = wishList.get(code);
+				int bookStock = Shelf.getShelf().get(code).getStock();
+				
+				if(bookStock<(getSotck+stock)){
+				    System.err.println("장바구니에 담을 책의 수량이 부족합니다!! 책[Code:"+code+"] 남은 수량 : "
+				            +bookStock+ " 희망 누적 수량 : "+(getSotck+stock));
+				    return;
+				}
+				
+				wishList.put(code, getSotck += stock);
 			} else
 				wishList.put(code, stock);
 		}
@@ -124,7 +124,7 @@ public class GuestImpl implements Guest {
 	public void cartDel() {
 		// TODO Auto-generated method stub
 		String strCode = "";
-
+		
 		while (!strCode.equals("0")) {
 			System.out.print("삭제하려는 책의 코드를 입력하세요. [이전:0] : ");
 			strCode = Console.input();
@@ -138,11 +138,6 @@ public class GuestImpl implements Guest {
 			Map<Integer, Integer> wishList = GuestMenu.getWish().getWishList();
 			
 			if (wishList.containsKey(code)) {
-				Book book = Shelf.getShelf().get(code);
-				
-				int stock = wishList.get(code);		// 장바구니 목록 수량
-				book.setStock(book.getStock()+stock);
-				
 				wishList.remove(code);
 				
 				System.out.println(Menu.RESULT_FOOTER);
@@ -164,8 +159,15 @@ public class GuestImpl implements Guest {
 			Map<Integer, Integer> buylist=null;
 			String id = Login.getSession().getMap().get("id");
 			if(option.equals("0")) break;
+			
 			if(option.equals("all")) {
 				buylist = GuestMenu.getWish().getWishList();
+				
+				// 구매전 책장 수량 확인 
+				if(!stockCheck(buylist)){
+                    return;
+                }
+				
 				GuestMenu.initWish();
 				Wish.getUserWish().put(id, GuestMenu.getWish());
 			}else {
@@ -183,6 +185,11 @@ public class GuestImpl implements Guest {
 				int stock = GuestMenu.getWish().getWishList().get(code);
 				buylist = new HashMap<Integer, Integer>();
 				buylist.put(code,  stock);
+				
+				//구매전 책장 수량 확인 
+				if(!stockCheck(buylist)){
+				    return;
+				}
 				GuestMenu.getWish().getWishList().remove(code);
 			}
 			
@@ -190,6 +197,43 @@ public class GuestImpl implements Guest {
 			System.out.println("구매요청완료 요청코드 : "+buyCode);
 		}
 		
+	}
+	
+	/*
+	 *  구매시 책장에 수량이 남아있는지 체크하며
+	 *  수량이 충분히 남아있다면 책장의 수량을 구매 수량만큼 감소시키는 함수
+	 */
+	private boolean stockCheck(Map<Integer, Integer> wishBooks){
+	    boolean pass = true;
+	    
+	    /*
+	     *  첫번째 반복문 구매희망 목록중 구매희망하는 수량만큼 책장에 수량이 남아있는지 체크
+	     */
+	    for(int bookCode : wishBooks.keySet()){
+	        int wishStock = wishBooks.get(bookCode);
+	        Book book = Shelf.getShelf().get(bookCode);
+	        
+	        /*
+	         *  책장의 책갯수가 구매 희망하는 수량보다 작을경우 false 반환
+	         */
+	        if(book.getStock()<wishStock){
+	            System.err.print("구매 불가 책 코드 :"+bookCode +"("+book.getBookName()+")"+"수량 부족");
+	            System.err.println("남아있는 수량 : "+book.getStock()+" 해당 책의 구매희망 수량을 다시 확인하세요.");
+	            pass= false;                      
+	        }
+	    }
+	    
+	    if(!pass) return pass;
+	    
+	    for(int bookCode : wishBooks.keySet()){
+            int wishStock = wishBooks.get(bookCode);
+            Book book = Shelf.getShelf().get(bookCode);
+            if(book.getStock() <0) {
+                System.err.println("[Error]GeustImpl.stockCheck() 수량 오류 책의 수량이  -입니다.");
+            }
+            book.setStock(book.getStock()-wishStock);
+        }
+	    return pass;
 	}
 	
 	@Override
@@ -249,10 +293,12 @@ public class GuestImpl implements Guest {
 				continue;
 			}
 			
-			book.setStock(book.getStock()-stock);
-			
 			Map<Integer, Integer> buyitem = new HashMap<Integer, Integer>();
 			buyitem.put(code, stock);
+			
+			if(!stockCheck(buyitem)){
+			    return;
+			}
 			
 			String buyCode = Order.addOrder(id, buyitem);
 			System.out.println("구매요청완료 요청코드 : "+buyCode);
