@@ -126,8 +126,15 @@ public class GuestImpl implements Guest {
 		String strCode = "";
 		
 		while (!strCode.equals("0")) {
-			System.out.print("삭제하려는 책의 코드를 입력하세요. [이전:0] : ");
+			System.out.print("삭제하려는 책의 코드를 입력하세요. [이전:0 전체:'all'] : ");
 			strCode = Console.input();
+			
+			// 장바구니 초기화
+			if(strCode.equals("all")) {
+                GuestMenu.initWish();
+                // 장바구니를 초기화하며 주소값이 바뀌었으므로 유저들의 장바구니를 관리하는 userWish에 새로운 장바구니를 덮어씌운다.
+                Wish.getUserWish().put(Login.getSession().getMap().get("id"), GuestMenu.getWish());
+            }
 
 			if (!Code.isNumeric(strCode)) {
 				System.err.println("[Error] 코드는 숫자만 포함합니다.");
@@ -160,6 +167,7 @@ public class GuestImpl implements Guest {
 			String id = Login.getSession().getMap().get("id");
 			if(option.equals("0")) break;
 			
+			// 전체구매
 			if(option.equals("all")) {
 				buylist = GuestMenu.getWish().getWishList();
 				
@@ -167,7 +175,7 @@ public class GuestImpl implements Guest {
 				if(!stockCheck(buylist)){
                     return;
                 }
-				
+				// 장바구니 초기화
 				GuestMenu.initWish();
 				Wish.getUserWish().put(id, GuestMenu.getWish());
 			}else {
@@ -190,9 +198,11 @@ public class GuestImpl implements Guest {
 				if(!stockCheck(buylist)){
 				    return;
 				}
+				// 장바구니에서 구매한 책코드 지우기
 				GuestMenu.getWish().getWishList().remove(code);
 			}
 			
+			// 주문목록에 추가하며 구매코드를 받는다.
 			String buyCode = Order.addOrder(id, buylist);
 			System.out.println("구매요청완료 요청코드 : "+buyCode);
 		}
@@ -222,9 +232,10 @@ public class GuestImpl implements Guest {
 	            pass= false;                      
 	        }
 	    }
-	    
+	    // 만약 pass가 false 라면 메소드 종료
 	    if(!pass) return pass;
 	    
+	    // 다시 반복하며 책장에서 수량을 빼는 작업
 	    for(int bookCode : wishBooks.keySet()){
             int wishStock = wishBooks.get(bookCode);
             Book book = Shelf.getShelf().get(bookCode);
@@ -236,6 +247,10 @@ public class GuestImpl implements Guest {
 	    return pass;
 	}
 	
+	/*
+	 * @see service.Guest#buyAskList()
+	 * 구매 요청 목록 메소드
+	 */
 	@Override
 	public void buyAskList() {
 		String id = Login.getSession().getMap().get("id");
