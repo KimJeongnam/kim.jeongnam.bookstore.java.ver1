@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import MyException.IntegerException;
+import MyException.NegativeNumberException;
 import domain.Book;
 import domain.Code;
 import domain.Login;
@@ -41,27 +43,24 @@ public class GuestImpl implements Guest {
 
 	// 장바구니 추가 메소드
 	@Override
-	public void cartAdd() throws Exception {
+	public void cartAdd() {
 		// TODO Auto-generated method stub
-		String strCode = "";
 		HostImpl.getInstance().bookList();
 
 		while (true) {
 			System.out.print("장바구니에 담을 책의 코드를 입력하세요. [이전:0] : ");
-			strCode = Console.input();
-
-			if (strCode.equals("0"))	// 0이면 반복 종료 
-				return;
-			
-			/*
-			 * 숫자가 아니라면 에러메세지 출력후 반복문 재시작
-			 */
-			if (!Code.isNumeric(strCode)){			
-                System.err.println("error 코드는 숫자입니다.!");
-                continue;
-            }
-
-			int code = Integer.parseInt(strCode);
+			int code =0;
+	        
+	        try{
+	            code = Console.inputCode();
+	        }catch(IntegerException e){
+	            System.out.println(e.getMessage());
+	            continue;
+	        }
+	        
+	        if(code == 0){
+	            return;
+	        }
 
 			// 책장에서 shelf를 가져온후 해당 map에 code가 없다면 반복문 재시작
 			if (!Shelf.getShelf().containsKey(code)){
@@ -70,18 +69,13 @@ public class GuestImpl implements Guest {
 			}
 
 			System.out.print("수량을 입력하세요 : ");
-			String strStock = Console.input();
-			
-			if (!Code.isNumeric(strStock)){
-                System.err.println("error 수량은 숫자입니다.!");
-                continue;
-            }
-
-			int stock = Integer.parseInt(strStock);
-			
-			if(stock <0) {
-				System.err.println("수량은 0이 될 수 없습니다.!");
-				continue;
+			int stock=0;
+			try{
+			    stock = Console.inputPriceAndStock();
+			}catch(NegativeNumberException e){
+			    continue;
+			}catch(IntegerException e2){
+			    continue;
 			}
 			/*
 			 * 책장에서 책의 정보가 들어있는 
@@ -91,10 +85,10 @@ public class GuestImpl implements Guest {
 			Book book = Shelf.getShelf().get(code);
 			
 			// 책의 수량이 입력한 수량보다 적거나 0보다 작을시  
-			if(book.getStock() < stock)
-				throw new Exception("책의 수량이 모자랍니다.");
-			else if(stock < 0)
-				throw new Exception("수량은 0보다큰 양수입니다.");
+			if(book.getStock() < stock){
+			    System.out.println("책의 수량이 모자랍니다.");
+			    continue;
+			}
 			
 			
 			// GuestMenu에잇는 장바구니의 주소값 을 가져온다.
