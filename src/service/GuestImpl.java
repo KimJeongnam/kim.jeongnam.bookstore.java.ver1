@@ -121,16 +121,23 @@ public class GuestImpl implements Guest {
 		
 		while (!strCode.equals("0")) {
 			System.out.print("삭제하려는 책의 코드를 입력하세요. [이전:0 전체:'all'] : ");
+			
 			strCode = Console.input();
+			
 			
 			// 장바구니 초기화
 			if(strCode.equals("all")) {
                 GuestMenu.initWish();
                 // 장바구니를 초기화하며 주소값이 바뀌었으므로 유저들의 장바구니를 관리하는 userWish에 새로운 장바구니를 덮어씌운다.
                 Wish.getUserWish().put(Login.getSession().getMap().get("id"), GuestMenu.getWish());
+                
+                System.out.println("장바구니 목록이 초기화 되었습니다.");
+                System.out.println(Menu.RESULT_FOOTER);
+                return;
             }
-
+			
 			if (!Code.isNumeric(strCode)) {
+				System.out.println("");
 				System.err.println("[Error] 코드는 숫자만 포함합니다.");
 				continue;
 			}
